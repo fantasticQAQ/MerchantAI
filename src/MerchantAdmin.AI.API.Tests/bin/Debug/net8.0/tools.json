@@ -1,0 +1,285 @@
+{
+  "version": 2,
+
+  "defaults": {
+    "baseUrl": "http://localhost:5002",
+    "timeoutSeconds": 30,
+    "response": {
+      "successPath": "success",
+      "messagePath": "message",
+      "codePath": "code",
+      "dataPath": "data"
+    }
+  },
+
+  "discovery": {
+    "swaggerUrl": "http://localhost:5002/swagger/v1/swagger.json"
+  },
+
+  "tools": [
+    {
+      "name": "list_products",
+      "description": "查询商品列表，可按名称关键词模糊筛选。返回商品ID、名称、单价、库存、是否上架。",
+      "access": "read",
+      "from": "GET /api/Products",
+      "parameters": [
+        {
+          "name": "name",
+          "description": "商品名称关键词，可为空"
+        },
+        {
+          "name": "page",
+          "description": "页码，默认1",
+          "default": 1
+        },
+        {
+          "name": "pageSize",
+          "description": "每页数量，默认50（与服务端分页上限一致）",
+          "default": 50
+        }
+      ]
+    },
+
+    {
+      "name": "list_orders",
+      "description": "查询订单列表，可按状态筛选。返回订单ID、创建时间、状态码、商品明细。",
+      "access": "read",
+      "from": "GET /api/Orders",
+      "parameters": [
+        {
+          "name": "orderId",
+          "description": "按订单ID精确查询，可为空"
+        },
+        {
+          "name": "status",
+          "description": "订单状态（英文）：created/paid/cancelled/paymentprocessing/refunded/timedout",
+          "schema": {
+            "enum": ["created", "paid", "cancelled", "paymentprocessing", "refunded", "timedout"]
+          }
+        },
+        {
+          "name": "page",
+          "description": "页码，默认1",
+          "default": 1
+        },
+        {
+          "name": "pageSize",
+          "description": "每页数量，默认50（与服务端分页上限一致）",
+          "default": 50
+        }
+      ]
+    },
+
+    {
+      "name": "get_dashboard",
+      "description": "获取经营统计：商品总数、订单总数、已支付订单数、待支付订单数、总销售额。",
+      "access": "read",
+      "from": "GET /api/Dashboard"
+    },
+
+    {
+      "name": "list_logs",
+      "description": "查询系统操作日志，可用于排查异常操作。",
+      "access": "read",
+      "from": "GET /api/Logs",
+      "parameters": [
+        {
+          "name": "page",
+          "description": "页码，默认1",
+          "default": 1
+        },
+        {
+          "name": "pageSize",
+          "description": "每页数量，默认50（与服务端分页上限一致）",
+          "default": 50
+        }
+      ]
+    },
+
+    {
+      "name": "create_product",
+      "description": "新建商品（写操作，需人工确认后才真正执行）。需要名称、单价和初始库存，新建后默认为上架状态。",
+      "access": "write",
+      "summaryFormatter": "productCreate",
+      "http": { "method": "POST", "path": "/api/Products" },
+      "request": {
+        "body": {
+          "productDto": {
+            "name": "$name",
+            "price": "$price",
+            "stock": "$stock"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "name",
+          "required": true,
+          "description": "商品名称",
+          "schema": { "type": "string", "minLength": 1 }
+        },
+        {
+          "name": "price",
+          "required": true,
+          "description": "单价，必须大于 0",
+          "schema": { "type": "number", "exclusiveMinimum": 0 }
+        },
+        {
+          "name": "stock",
+          "required": true,
+          "description": "初始库存，不能为负数",
+          "schema": { "type": "number", "minimum": 0 }
+        }
+      ]
+    },
+
+    {
+      "name": "update_product",
+      "description": "修改商品信息（写操作，需人工确认后才真正执行）。支持改名、改单价、调整库存、上下架。只需要传要改的字段，没传的保持不变。特别注意：库存是按增量调整的，不是设成某个绝对值——补货传正数、扣减传负数；用户如果说「库存改成 50」，你必须先查当前库存再算出差额。",
+      "access": "write",
+      "from": "PUT /api/Products/{productId}",
+      "summaryFormatter": "productUpdate",
+      "parameters": [
+        {
+          "name": "productId",
+          "required": true,
+          "description": "要修改的商品ID"
+        },
+        {
+          "name": "body",
+          "required": true,
+          "description": "要修改的字段，只传需要改的，至少传一个：name=新名称、price=新单价、stockDelta=库存增量（正数补货/负数扣减，不是绝对值）、isActive=是否上架（true 上架 / false 下架）。",
+          "schemaMode": "replace",
+          "schema": {
+            "type": "object",
+            "minProperties": 1,
+            "properties": {
+              "name": { "type": "string", "description": "新的商品名称" },
+              "price": { "type": "number", "description": "新的单价" },
+              "stockDelta": { "type": "number", "description": "库存增量：正数补货、负数扣减。这是增量，不是把库存改成这个数" },
+              "isActive": { "type": "boolean", "description": "是否上架：true 上架，false 下架" }
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "create_order",
+      "description": "为用户创建订单（写操作，会扣减库存，需人工确认后才真正执行）。必须传入订单项数组。若要为多个商品下单，可在一次调用里传入多个订单项；若确实需要分成多张独立订单，可多次调用本函数，每次一项。",
+      "access": "write",
+      "from": "POST /api/Orders/create",
+      "summaryFormatter": "orderItems",
+      "request": {
+        "body": {
+          "orderItems": {
+            "$map": "orderItems",
+            "item": {
+              "productId": "$productId",
+              "quantity": "$quantity",
+              "productName": "",
+              "price": 0
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "orderItems",
+          "required": true,
+          "description": "订单项数组，每项必须包含 productId 与 quantity，不可为空数组",
+          "schemaMode": "replace",
+          "schema": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "properties": {
+                "productId": { "type": "integer", "description": "商品ID" },
+                "quantity": { "type": "number", "description": "购买数量" }
+              },
+              "required": ["productId", "quantity"]
+            }
+          }
+        }
+      ]
+    },
+
+    {
+      "name": "cancel_order",
+      "description": "取消订单（写操作，需人工确认后才真正执行）。取消后会回补商品库存；如果订单正处于支付处理中，还会通知支付网关终止支付。",
+      "access": "write",
+      "from": "POST /api/Orders/{orderId}/cancel",
+      "summaryTemplate": "取消订单 #{orderId}（会回补库存）",
+      "parameters": [
+        {
+          "name": "orderId",
+          "required": true,
+          "description": "要取消的订单ID"
+        }
+      ]
+    },
+
+    {
+      "name": "pay_order",
+      "description": "为待支付订单发起支付（写操作，需人工确认后才真正执行）。订单会进入「支付处理中」，最终是否支付成功由支付网关回调决定，不是立刻就能算支付成功。",
+      "access": "write",
+      "from": "POST /api/Orders/{orderId}/pay",
+      "summaryTemplate": "为订单 #{orderId} 发起支付",
+      "parameters": [
+        {
+          "name": "orderId",
+          "required": true,
+          "description": "要发起支付的订单ID"
+        }
+      ]
+    },
+
+    {
+      "name": "refund_order",
+      "description": "退款订单（写操作，需人工确认后才真正执行）。只有已支付的订单能退款；退款会同时把商品退回库存。",
+      "access": "write",
+      "from": "POST /api/Orders/{orderId}/refund",
+      "summaryTemplate": "退款订单 #{orderId}（会回补库存）",
+      "parameters": [
+        {
+          "name": "orderId",
+          "required": true,
+          "description": "要退款的订单ID"
+        }
+      ]
+    },
+
+    {
+      "name": "delete_order",
+      "description": "删除订单（写操作，需人工确认后才真正执行）。这是软删除，只做归档标记、不改变库存；而且只有终态订单（已取消/已支付/已退款/超时关闭）能删，待支付或支付处理中的订单会失败，那种情况应该改用 cancel_order。",
+      "access": "write",
+      "roles": ["Admin", "SuperAdmin"],
+      "from": "DELETE /api/Orders/{orderId}",
+      "summaryTemplate": "删除订单 #{orderId}（软删除，不动库存）",
+      "parameters": [
+        {
+          "name": "orderId",
+          "required": true,
+          "description": "要删除的订单ID"
+        }
+      ]
+    },
+
+    {
+      "name": "delete_product",
+      "description": "删除商品（写操作，需人工确认后才真正执行）。注意这是物理删除、不可恢复；如果该商品还有订单引用，应该改用 update_product 把它下架，而不是删除。",
+      "access": "write",
+      "roles": ["Admin", "SuperAdmin"],
+      "from": "DELETE /api/Products/{productId}",
+      "summaryTemplate": "删除商品 #{productId}（物理删除，不可恢复，请务必确认）",
+      "parameters": [
+        {
+          "name": "productId",
+          "required": true,
+          "description": "要删除的商品ID"
+        }
+      ]
+    }
+  ]
+}

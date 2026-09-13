@@ -1,0 +1,1410 @@
+:root {
+  --bg: #f5f6f8;
+  --panel: #ffffff;
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --danger: #ef4444;
+  --text: #1f2937;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --bubble-user: #e8f1ff;
+  --bubble-ai: #ffffff;
+
+  /* ---- 圆角阶梯。整套 UI 只用这三个 + 胶囊，不再各写各的 ---- */
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  /* ---- 字号阶梯：全站只用这六档 ----
+     之前散落了 14 种（10/11/11.5/12/12.5/13/13.5/14/14.5/15/15.5/16/18/19），
+     其中一半彼此只差 0.5px —— 人眼分不出来，但整页看着就是「每处都不一样」。 */
+  --fs-2xs: 11px;
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-base: 14px;
+  --fs-lg: 16px;
+  --fs-xl: 18px;
+
+  /* 等宽栈必须带中文字体：Cascadia Code 和 Consolas 都没有中文字形，
+     不补的话中文会 fallback 到宋体，同一个 pre 块里中英字重、基线全对不上。 */
+  --font-mono: ui-monospace, 'Cascadia Code', Consolas, 'Microsoft YaHei UI', monospace;
+
+  /* ---- 覆盖 Element Plus 的基础令牌 ----
+     EP 默认 --el-border-radius-base 只有 4px，四个角看着就是「方的」，
+     而 --el-border-radius-round 是 20px（不是真胶囊）。字体也是它自己那套
+     Helvetica 栈，和项目里的中文字体对不上。这里统一收口。 */
+  --el-border-radius-base: var(--radius-md);
+  --el-border-radius-small: var(--radius-sm);
+  --el-border-radius-round: var(--radius-pill);
+  --el-font-family: inherit;
+  --el-font-size-base: var(--fs-sm);
+  --el-font-weight-primary: 500;
+
+  /* 主色对齐项目里的 --primary（EP 默认是 #409eff，和这套蓝不是同一个） */
+  --el-color-primary: #3b82f6;
+  --el-color-primary-light-3: #76a7f9;
+  --el-color-primary-light-5: #9dc0fa;
+  --el-color-primary-light-7: #c4d9fc;
+  --el-color-primary-light-8: #d8e6fd;
+  --el-color-primary-light-9: #ebf2fe;
+  --el-color-primary-dark-2: #2f68c5;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  /* 'Microsoft YaHei UI' 比老的 'Microsoft YaHei' 细一点、现代一点；
+     macOS 上走 PingFang，Linux 兜底到 sans-serif。 */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'HarmonyOS Sans SC', 'Microsoft YaHei UI', 'Microsoft YaHei', sans-serif;
+  font-size: var(--fs-base);
+  line-height: 1.55;
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------------------------------------------------------------- Element Plus 外观收口 */
+
+/* 圆角统一：EP 各类控件的默认圆角不一致（4 / 2 / 20px），这里一次性拉齐 */
+.el-button {
+  border-radius: var(--radius-md);
+  font-weight: 500;
+}
+
+.el-button.is-round {
+  border-radius: var(--radius-pill);
+}
+
+.el-tag {
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  padding: 0 8px;
+}
+
+.el-input__wrapper,
+.el-textarea__inner,
+.el-select__wrapper {
+  border-radius: var(--radius-md);
+}
+
+.el-alert,
+.el-message-box {
+  border-radius: var(--radius-lg);
+}
+
+.el-card {
+  border-radius: var(--radius-lg);
+}
+
+/* 下拉浮层：EP 默认是直角的小圆角，和上面这些对不上 */
+.el-popper.is-light,
+.el-select-dropdown {
+  border-radius: var(--radius-lg);
+}
+
+.el-select-dropdown__item {
+  border-radius: var(--radius-sm);
+  margin: 0 4px;
+  font-size: var(--fs-sm);
+}
+
+.el-select-dropdown__list {
+  padding: 6px 0;
+}
+
+.el-empty__description p {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------- 外壳：占满整页 */
+
+/* 刻意不设 max-width —— 这是个后台工具，宽屏上就该把对话和表格铺开，
+   而不是缩在中间一条 800px 的窄条里。 */
+.chat {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+}
+
+.boot {
+  flex: 1;
+}
+
+/* ---------------------------------------------------------------- 页头 + 两个页签 */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border);
+  flex: none;
+}
+
+.app-header .brand {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+/* 页签：EP 默认是「实心蓝滑块 + 白字」，边角只有 calc(base - 2px)，
+   放在页头里又重又方。改成浅灰底 + 白色胶囊滑块 + 蓝字的轻量胶囊。 */
+.app-header .el-segmented {
+  --el-segmented-bg-color: #f1f5f9;
+  --el-segmented-padding: 3px;
+  --el-segmented-color: #64748b;
+  --el-segmented-item-hover-bg-color: #e6ebf2;
+  --el-segmented-item-hover-color: #1f2937;
+  --el-segmented-item-selected-bg-color: #ffffff;
+  --el-segmented-item-selected-color: #2563eb;
+  min-height: 34px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm);
+}
+
+.app-header .el-segmented__item {
+  padding: 0;
+}
+
+.app-header .el-segmented__item-selected {
+  border-radius: var(--radius-pill);
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.03);
+}
+
+.app-header .el-segmented__item-label {
+  padding: 0 20px;
+  line-height: 28px;
+  font-weight: 500;
+}
+
+.app-header .el-segmented__item.is-selected .el-segmented__item-label {
+  font-weight: 600;
+}
+
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 品牌名从顶部横栏挪进侧栏，顶部那一整条就省下来了 */
+.sidebar-brand {
+  flex: none;
+  padding: 14px 14px 10px;
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--text);
+}
+
+.sidebar-foot {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-top: 1px solid var(--border);
+}
+
+.sidebar-foot .el-button {
+  margin-left: auto;
+}
+
+/* ---------------------------------------------------------------- 内容区页签（下划线式） */
+
+/* 顶部会话名。切了两个页签，得有个东西告诉你「现在看的是哪个会话」。 */
+.pane-title {
+  flex: none;
+  padding: 14px 20px 0;
+  font-size: var(--fs-base);
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 参照 DSH：不加底色、不加边框，纯文字 + 选中项一条下划线，整行下面一道细线。 */
+.pane-tabs {
+  flex: none;
+  display: flex;
+  gap: 22px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pane-tab {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 10px 2px 9px;
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: #94a3b8;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.pane-tab:hover {
+  color: #475569;
+}
+
+.pane-tab.active {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.pane-tab.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--primary);
+}
+
+/* ---------------------------------------------------------------- 左栏 + 主区 */
+
+.app-body {
+  flex: 1;
+  display: flex;
+  min-height: 0;   /* 不加这个，里面的滚动区撑不出高度 */
+}
+
+.sidebar {
+  width: 258px;
+  flex: none;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: #fcfcfd;
+}
+
+.session-scroll {
+  flex: 1;
+  min-height: 0;
+}
+
+.session-scroll .el-scrollbar__view {
+  padding: 0 8px 12px;
+}
+
+.main-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+}
+
+.pane-error {
+  margin: 10px 20px 0;
+  flex: none;
+  width: auto;
+}
+
+/* ---------------------------------------------------------------- 左栏会话列表
+   参照 DSH 的目录树：折叠的文件夹节点 + 缩进的子项。
+   会话行压成**单行**（图标 + 标题 + 右侧相对时间），比原来两行带
+   「02:24 · 2 条 / 3 轨迹」矮一半，一屏能放下的会话多得多。 */
+
+.sidebar-head {
+  display: flex;
+  align-items: center;
+  flex: none;
+  padding: 10px 10px 2px;
+}
+
+/* 新会话：整个侧栏最显眼的入口。参照 DSH —— 占满整行、有描边、够高，
+   而不是缩在角落里的小图标按钮。 */
+.new-session-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  height: 38px;
+  padding: 0 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  font: inherit;
+  font-size: var(--fs-base);
+  font-weight: 500;
+  color: #334155;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.13s, border-color 0.13s, color 0.13s, box-shadow 0.13s;
+}
+
+.new-session-btn:hover:not(:disabled) {
+  border-color: #bfdbfe;
+  background: #f8fbff;
+  color: var(--primary-dark);
+  box-shadow: 0 1px 4px rgba(59, 130, 246, 0.12);
+}
+
+.new-session-btn:disabled {
+  color: #b6c2d1;
+  cursor: not-allowed;
+}
+
+.new-session-btn .el-icon {
+  font-size: var(--fs-xl);
+  color: #64748b;
+  transition: color 0.13s;
+}
+
+.new-session-btn:hover:not(:disabled) .el-icon {
+  color: var(--primary);
+}
+
+.sidebar-tools {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  padding: 6px 10px 8px;
+}
+
+.session-search {
+  flex: 1;
+  min-width: 0;
+}
+
+.session-search .el-input__wrapper {
+  border-radius: var(--radius-pill);
+  background: #f1f5f9;
+  box-shadow: none;
+  padding: 0 10px;
+}
+
+.session-search .el-input__wrapper.is-focus {
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--primary) inset;
+}
+
+.session-search .el-input__inner {
+  font-size: var(--fs-sm);
+}
+
+.btn-icon.el-button {
+  width: 28px;
+  height: 28px;
+  flex: none;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-icon.el-button:hover {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.btn-icon.el-button .el-icon {
+  font-size: var(--fs-lg);
+}
+
+/* ---- 分组节点 ---- */
+
+.session-section {
+  margin-bottom: 4px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 30px;
+  padding: 4px 8px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: #64748b;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background 0.13s, color 0.13s;
+}
+
+.section-head:hover {
+  background: #f1f5f9;
+  color: #334155;
+}
+
+/* 目录树的小三角：折叠朝右，展开转 90° 朝下 */
+.section-caret {
+  font-size: var(--fs-2xs);
+  color: #b6c2d1;
+  flex: none;
+  transition: transform 0.18s ease;
+}
+
+.section-caret.open {
+  transform: rotate(90deg);
+}
+
+.section-folder {
+  font-size: var(--fs-base);
+  color: #94a3b8;
+  flex: none;
+}
+
+.section-head.group .section-folder {
+  color: #f0b429;
+}
+
+.section-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.section-count {
+  font-weight: 400;
+  color: #cbd5e1;
+  font-size: var(--fs-2xs);
+  font-variant-numeric: tabular-nums;
+}
+
+.section-head.collapsed .section-name {
+  color: #94a3b8;
+}
+
+.section-head .row-more {
+  margin-left: auto;
+  opacity: 0;
+  transition: opacity 0.13s;
+}
+
+.section-head:hover .row-more,
+.session-item:hover .row-more {
+  opacity: 1;
+}
+
+/* 子项缩进 + 左边一条引导线，层级一眼看得出来 */
+.section-body {
+  padding-left: 18px;
+  margin-left: 12px;
+  border-left: 1px solid #eef2f7;
+}
+
+.section-empty {
+  padding: 5px 8px;
+  font-size: var(--fs-xs);
+  color: #cbd5e1;
+}
+
+/* ---- 会话行（单行） ---- */
+
+/* 会话行只保留一行：图标 + 标题 + 时间。
+   内容摘要不在这里显示 —— 它会把每行撑成两倍高，一屏能看到的会话少一半；
+   想知道某个会话聊了什么，悬浮时的浮层里有完整标题和时间，点进去就是全文。 */
+.session-item {
+  position: relative;
+  padding: 6px 9px;
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: background 0.13s;
+}
+
+/* 标题那一行：图标 + 标题 + 时间 + 三点 */
+.session-line {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 22px;
+}
+
+.session-item:hover {
+  background: #f1f5f9;
+}
+
+/* 当前会话：一层浅灰圆角卡片（DSH 那种）。
+   之前用的是偏蓝的 #e3edfb 加一圈内描边，配上蓝色标题显得很"吵"；
+   换成中性的浅灰，靠卡片本身把选中的那条托起来，字反而更清楚。 */
+.session-item.current {
+  background: #eef1f6;
+}
+
+.session-item.dragging {
+  opacity: 0.4;
+}
+
+/* 拖动的插入位置：一条蓝色横线 */
+.session-item.drop-before::before,
+.session-item.drop-after::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--primary);
+}
+
+.session-item.drop-before::before {
+  top: -1px;
+}
+
+.session-item.drop-after::after {
+  bottom: -1px;
+}
+
+.session-icon {
+  font-size: var(--fs-sm);
+  color: #b6c2d1;
+  flex: none;
+}
+
+.session-item.current .session-icon {
+  color: #7d8ea3;
+}
+
+/* 标题：常态中等字重，选中的加粗 —— 不再靠"变蓝"来表示选中，
+   颜色一跳一变（一会儿深灰一会儿亮蓝）正是看着"字体变了"的原因。 */
+.session-title {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  line-height: 1.35;
+  color: #2b3648;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.session-item.current .session-title {
+  color: #16233a;
+  font-weight: 600;
+}
+
+.session-time {
+  flex: none;
+  font-size: var(--fs-2xs);
+  line-height: 1;
+  color: #a8b3c2;
+  font-variant-numeric: tabular-nums;
+  transition: opacity 0.13s;
+}
+
+/* 悬浮时三点盖住时间的位置，不额外占宽度 */
+.session-item:hover .session-time {
+  opacity: 0;
+}
+
+.session-pending {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f59e0b;
+}
+
+
+/* 三点的公共外观。定位只给会话行里那个（见 .session-item .el-dropdown） */
+.row-more {
+  width: 22px;
+  height: 22px;
+  padding: 0 !important;
+  border-radius: var(--radius-pill);
+  color: #b6c2d1;
+  flex: none;
+}
+
+.row-more:hover {
+  background: #e8eef6 !important;
+  color: #475569 !important;
+}
+
+.row-more .el-icon {
+  font-size: var(--fs-sm);
+}
+
+/* 定位要加在 el-dropdown 包出来的那层 div 上，不是里面的 button ——
+   el-dropdown 的默认插槽外面有一层 .el-dropdown，它是正常流里的 inline-flex，
+   不给它绝对定位的话会占掉一整行高度，三点就被挤到下面去了。 */
+.session-item .el-dropdown {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+  line-height: 0;
+  opacity: 0;
+  transition: opacity 0.13s;
+}
+
+.session-item:hover .el-dropdown {
+  opacity: 1;
+}
+
+.session-item .row-more {
+  position: static;
+}
+
+/* ---------------------------------------------------------------- 登录 */
+
+.login {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  width: min(380px, 100%);
+  border-radius: var(--radius-lg);
+}
+
+.login-card .el-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 26px 24px;
+}
+
+.login-title {
+  font-size: var(--fs-xl);
+  font-weight: 600;
+  text-align: center;
+}
+
+.login-sub {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 4px;
+}
+
+/* ---------------------------------------------------------------- 权限下拉（el-select） */
+
+.mode-select {
+  /* placeholder 用的是 EP 自己的 --el-select-input-font-size（默认 14px），
+     光在外层写 font-size 是管不到它的 —— 不覆盖的话「完全权限」四个字
+     按 14px 算就是 56px，加上圆点、箭头、内边距会把这 120px 撑爆，被省略号吃掉。 */
+  --el-select-input-font-size: var(--fs-sm);
+  --el-select-font-size: var(--fs-sm);
+  width: 142px;
+  flex: none;
+}
+
+/* 胶囊 + 按档位淡色底 + 一个状态圆点。默认的描边方框放这儿太像表单控件。 */
+.mode-select .el-select__wrapper {
+  min-height: 32px;
+  padding: 0 22px 0 10px;
+  border: none;
+  border-radius: var(--radius-pill);
+  box-shadow: none;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  transition: background 0.15s, filter 0.15s;
+}
+
+.mode-select .el-select__prefix {
+  margin-right: 6px;
+}
+
+/* 四个中文字被压成「完全权…」比排版难看多了，宁可让它撑开 */
+.mode-select .el-select__placeholder {
+  text-overflow: clip;
+  overflow: visible;
+}
+
+.mode-select .el-select__placeholder,
+.mode-select .el-select__selected-item,
+.mode-select .el-select__caret {
+  color: inherit;
+}
+
+.mode-select .el-select__caret {
+  font-size: var(--fs-sm);
+  opacity: 0.7;
+}
+
+.mode-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.mode-select.mode-readonly .el-select__wrapper {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.mode-select.mode-approve .el-select__wrapper {
+  background: #e8f1ff;
+  color: var(--primary-dark);
+}
+
+.mode-select.mode-full .el-select__wrapper {
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.mode-select .el-select__wrapper:hover,
+.mode-select .el-select__wrapper.is-hovering:not(.is-focused) {
+  filter: brightness(0.965);
+}
+
+/* ---------------------------------------------------------------- 权限下拉的浮层 */
+
+/* fit-input-width 关掉了，宽度由这里说了算；否则选项里那两行文字会被挤成窄条。
+   浮层是 teleport 到 body 的，所以不能写在 .mode-select 下面。 */
+.mode-dropdown {
+  min-width: 244px !important;
+  border-radius: var(--radius-lg) !important;
+  padding: 6px !important;
+}
+
+.mode-dropdown .el-select-dropdown__item {
+  height: auto;
+  line-height: 1.45;
+  padding: 7px 10px;
+  margin: 1px 0;
+}
+
+/* 选项里带一句说明，光看名字不知道「完全权限」意味着什么。
+   说明文字原来是 #94a3b8，太淡了，在浅色浮层上看着像虚化的。 */
+.mode-opt {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 100%;
+}
+
+.mode-opt-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.mode-opt-check {
+  color: var(--primary);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+}
+
+.mode-opt-hint {
+  font-size: var(--fs-xs);
+  color: #64748b;
+}
+
+.mode-dropdown .el-select-dropdown__item.is-selected .mode-opt-label {
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------- 模式提示（页头） */
+
+/* 非默认权限时的常驻提醒，和「退出」同一行、高度对齐。
+   之前放在对话区里，切成轨迹页就看不见了，也容易忘了自己开着什么。 */
+.mode-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 11px;
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.mode-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.mode-badge-readonly {
+  background: #f1f5f9;
+  color: #475569;
+  box-shadow: 0 0 0 1px #cbd5e1 inset;
+}
+
+.mode-badge-full {
+  background: #fef2f2;
+  color: #b91c1c;
+  box-shadow: 0 0 0 1px #fda29b inset;
+}
+
+/* ---------------------------------------------------------------- 对话区 */
+
+.chat-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 40px 20px 20px;   /* 右边留出刻度条的位置 */
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* 对话区 + 右侧刻度条 */
+.chat-scroll {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  position: relative;   /* 刻度条要绝对定位到滚动条左边 */
+}
+
+/* ---------------------------------------------------------------- 会话悬浮浮层 */
+
+/* 列表里标题会被省略号截掉，悬浮时给全文 + 完整时间 + 当前状态。
+   popper 是 teleport 到 body 的，所以不能写在 .session-item 下面。 */
+.session-tip.el-popper {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+  max-width: 260px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+.session-tip.el-popper .el-popper__arrow::before {
+  background: #fff;
+  border: 1px solid var(--border);
+}
+
+.session-tip .tip-title {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  line-height: 1.4;
+  color: #1f2937;
+  word-break: break-word;
+}
+
+.session-tip .tip-time {
+  margin-top: 3px;
+  font-size: var(--fs-xs);
+  color: #94a3b8;
+}
+
+.session-tip .tip-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: var(--fs-xs);
+  color: #64748b;
+}
+
+.session-tip .tip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.session-tip .tip-dot.idle { background: #22c55e; }
+.session-tip .tip-dot.warn { background: #f59e0b; }
+.session-tip .tip-dot.running { background: #3b82f6; }
+
+/* ---------------------------------------------------------------- 消息刻度条 */
+
+/* 只给我自己发的那几条消息打点。
+   绝对定位到 right，是让它落在 .chat-list 的滚动条**左边** ——
+   放右边会和滚动条叠在一起互相打架。 */
+.minimap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 14px;
+  width: 16px;
+  display: flex;
+  flex-direction: column;
+  /* 刻度之间拉开距离：原来 4px 挤成一坨，看着像一条虚线而不是一个个定位点 */
+  gap: 8px;
+  padding: 22px 0;
+  pointer-events: none;   /* 空白处不挡聊天区的滚动 */
+}
+
+.tick {
+  flex: 1 1 auto;
+  width: 100%;
+  min-height: 3px;
+  max-height: 7px;
+  border-radius: 2px;
+  background: #d8dfe8;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: background 0.13s, max-height 0.13s;
+}
+
+.tick:hover {
+  background: var(--primary);
+  max-height: 10px;
+}
+
+.tick.active {
+  background: #1f2937;
+  max-height: 10px;
+}
+
+/* 刻度条的浮层：贴在刻度**左边**弹出来，不然会顶出屏幕右边缘挡住刻度本身。
+   浅色底 + 细描边，和整套界面一致（深色底在浅色界面里太跳）。 */
+.el-popper.tick-tip {
+  max-width: 280px;
+  padding: 9px 11px;
+  border-radius: var(--radius-md);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  background: #fff;
+  color: #334155;
+  border: 1px solid var(--border);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+}
+
+.el-popper.tick-tip .el-popper__arrow::before {
+  background: #fff;
+  border: 1px solid var(--border);
+}
+
+/* 上面是这轮的提问，下面是 AI 的回复 */
+.tick-tip-q {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: #1f2937;
+  word-break: break-word;
+}
+
+.tick-tip-a {
+  margin-top: 5px;
+  padding-top: 5px;
+  border-top: 1px solid var(--border);
+  color: #64748b;
+  word-break: break-word;
+}
+
+.empty-title {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.empty-tips {
+  font-size: var(--fs-base);
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row.user {
+  align-items: flex-end;
+}
+
+.row.ai {
+  align-items: flex-start;
+}
+
+.bubble {
+  max-width: 78%;
+  padding: 10px 14px;
+  border-radius: var(--radius-lg);
+  line-height: 1.6;
+  font-size: var(--fs-base);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.row.user .bubble {
+  background: var(--bubble-user);
+  border: 1px solid #d5e5ff;
+}
+
+.row.ai .bubble {
+  background: var(--bubble-ai);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+/* Markdown 渲染后的气泡：交给块级元素排版，不再靠 pre-wrap */
+.bubble.md {
+  white-space: normal;
+  max-width: min(92%, 980px);
+  width: fit-content;
+  overflow-x: auto;
+}
+
+.bubble.md > :first-child {
+  margin-top: 0;
+}
+
+.bubble.md > :last-child {
+  margin-bottom: 0;
+}
+
+.bubble.md p,
+.bubble.md ul,
+.bubble.md ol,
+.bubble.md pre,
+.bubble.md blockquote {
+  margin: 8px 0;
+}
+
+.bubble.md ul,
+.bubble.md ol {
+  padding-left: 22px;
+}
+
+.bubble.md h1,
+.bubble.md h2,
+.bubble.md h3,
+.bubble.md h4 {
+  font-size: var(--fs-lg);
+  margin: 12px 0 6px;
+}
+
+.bubble.md table {
+  border-collapse: collapse;
+  margin: 8px 0;
+  font-size: var(--fs-sm);
+  width: 100%;
+}
+
+.bubble.md th,
+.bubble.md td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.bubble.md th {
+  background: #f9fafb;
+  font-weight: 600;
+}
+
+.bubble.md tbody tr:nth-child(even) {
+  background: #fcfcfd;
+}
+
+.bubble.md code {
+  background: #f3f4f6;
+  border-radius: 5px;
+  padding: 1px 5px;
+  font-size: var(--fs-sm);
+  font-family: var(--font-mono);
+}
+
+.bubble.md pre {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  overflow-x: auto;
+}
+
+.bubble.md pre code {
+  background: none;
+  padding: 0;
+}
+
+.bubble.md blockquote {
+  border-left: 3px solid var(--border);
+  padding-left: 10px;
+  color: var(--text-muted);
+}
+
+.bubble.md a {
+  color: var(--primary);
+}
+
+.bubble.md strong {
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------- 待确认卡片 */
+
+.pending-card {
+  width: min(78%, 720px);
+  border: 1px solid #fcd34d;
+  background: #fffbeb;
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.pending-title {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: #b45309;
+}
+
+.pending-desc {
+  font-size: var(--fs-sm);
+  color: #92400e;
+  margin-top: 2px;
+}
+
+.pending-body {
+  flex: 1;
+  min-width: 180px;
+}
+
+.pending-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ---------------------------------------------------------------- 打字动画 */
+
+.typing span {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  border-radius: 50%;
+  background: #9ca3af;
+  animation: blink 1.4s infinite both;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0%,
+  80%,
+  100% {
+    opacity: 0.2;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+.typing-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-start;
+}
+
+.auto-round {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  padding-left: 4px;
+}
+
+/* ---------------------------------------------------------------- 输入区 */
+
+.composer {
+  flex: none;
+  margin: 0 20px 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  padding: 10px 10px 8px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.composer:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+/* el-input 自带的边框会和外层容器打架，这里把它抹平 */
+.composer .el-textarea__inner {
+  box-shadow: none;
+  padding: 2px 4px 8px;
+  font-size: var(--fs-base);
+  line-height: 1.55;
+}
+
+.composer-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.composer-hint {
+  margin-left: auto;
+  font-size: var(--fs-xs);
+  color: #cbd5e1;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------- 轨迹时间线 */
+
+.trace-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px 12px;
+  border-bottom: 1px solid var(--border);
+  flex: none;
+}
+
+.trace-title {
+  font-size: var(--fs-base);
+  font-weight: 600;
+}
+
+.trace-sub {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-top: 2px;
+  max-width: 640px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 两个按钮（刷新 / 删除轨迹）一起靠右：给第一个加 auto 左边距，后面那个自然跟上 */
+.trace-head .el-button:first-of-type {
+  margin-left: auto;
+}
+
+.trace-scroll {
+  flex: 1;
+  min-height: 0;
+}
+
+/* 轨迹页顶部的体检条 */
+.trace-stats {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  padding: 14px 24px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 52px;
+}
+
+.stat-value {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: var(--fs-2xs);
+  color: #94a3b8;
+}
+
+.stat.danger .stat-value {
+  color: var(--danger);
+}
+
+.trace-filter {
+  margin-left: auto;
+}
+
+.trace-timeline {
+  padding: 20px 24px 8px 16px;
+}
+
+.trace-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.trace-fn {
+  color: var(--primary-dark);
+  background: #eff6ff;
+  border-radius: 6px;
+  padding: 1px 6px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+}
+
+.trace-payload {
+  margin: 6px 0 0;
+  padding: 7px 9px;
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  line-height: 1.55;
+  color: #475569;
+  white-space: pre-wrap;
+  word-break: break-all;
+  cursor: pointer;
+  max-height: 130px;
+  overflow: hidden;
+}
+
+.trace-payload:not(.expanded):hover {
+  border-color: #bfdbfe;
+}
+
+.trace-payload.expanded {
+  max-height: 480px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+/* el-timeline 的默认节点偏小，加粗一点点更像时间线 */
+.trace-timeline .el-timeline-item__timestamp {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+/* ---------------------------------------------------------------- Element Plus 微调 */
+
+/* ElMessageBox 默认会把消息里的 \n 吃掉，权限切换那段说明是分段的 */
+.ai-confirm .el-message-box__message {
+  white-space: pre-line;
+  line-height: 1.65;
+}
+
+.ai-confirm {
+  max-width: min(460px, 92vw);
+}

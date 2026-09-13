@@ -1,0 +1,12 @@
+﻿docker : --progress is a global compose flag, better use `docker compose --progress xx build ...
+At line:6 char:3
++   docker compose -f docker-compose.yml --env-file .env.example -p mer ...
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (--progress is a...ss xx build ...:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ Image merchant-admin-ai-api:latest Building 
+ Image merchant-admin-ai-frontend:latest Building 
+failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct and if t
+he daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+

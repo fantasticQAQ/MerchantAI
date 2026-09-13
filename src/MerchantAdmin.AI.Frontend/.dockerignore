@@ -1,0 +1,14 @@
+# 构建上下文里不能有宿主机装好的依赖 —— Dockerfile 里 `COPY . .` 会把它覆盖到
+# `npm ci` 装出来的那层之上，容器里就跑的是 Windows 上用不了的二进制。
+node_modules
+dist
+
+# 事故处理留下的临时产物，别进镜像
+src/App.vue.corrupted
+repair-app-vue*.ps1
+
+.git
+.gitignore
+.vite
+*.log
+*.tmp

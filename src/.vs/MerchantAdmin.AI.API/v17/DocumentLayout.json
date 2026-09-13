@@ -1,0 +1,699 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\ai\\tools\\toolcatalog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\ai\\tools\\toolcatalog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\ai\\tools\\toolfunctionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\ai\\tools\\toolfunctionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\appsettings.development.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\tools.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\tools.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\.swagger-cache.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\.swagger-cache.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\mcp\\storemcpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\mcp\\storemcpserver.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\storeagent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\storeagent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\controllers\\toolscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\controllers\\toolscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\controllers\\sessionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\controllers\\sessionscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\ai\\tools\\tooldescriptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\ai\\tools\\tooldescriptor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\ai\\tools\\httptoolinvoker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\ai\\tools\\httptoolinvoker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\ai\\tools\\jsonschemalite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\ai\\tools\\jsonschemalite.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\auth\\currentuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\auth\\currentuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\visibilitystore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\visibilitystore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\toolcatalogreloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\toolcatalogreloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\storeguardfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\storeguardfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\sessiontitleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\sessiontitleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api.tests\\agentloopguardtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|solutionrelative:merchantadmin.ai.api.tests\\agentloopguardtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api.tests\\hotreloadtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|solutionrelative:merchantadmin.ai.api.tests\\hotreloadtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\sessionprefs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\sessionprefs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\redispendingactionstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\redispendingactionstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\redisconversationstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\redisconversationstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\pendingactionstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\pendingactionstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\humanapprovalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\humanapprovalservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\conversationstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\conversationstore.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\chathistoryserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\chathistoryserializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\chathistorycompactor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\chathistorycompactor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\aipermissionmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\aipermissionmode.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\agenttraceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\agenttraceservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\agentloopguard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\agentloopguard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\harness\\agentcontinuation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\harness\\agentcontinuation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api.tests\\fakemerchantapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|solutionrelative:merchantadmin.ai.api.tests\\fakemerchantapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api.tests\\redispersistencetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|solutionrelative:merchantadmin.ai.api.tests\\redispersistencetests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\ai\\tools\\openapitoolsource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\ai\\tools\\openapitoolsource.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api.tests\\chathistoryserializertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|solutionrelative:merchantadmin.ai.api.tests\\chathistoryserializertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api.tests\\approvalflowtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|solutionrelative:merchantadmin.ai.api.tests\\approvalflowtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api.tests\\swaggerfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D0A2627E-11F2-433C-A391-AFC22724CBF5}|MerchantAdmin.AI.API.Tests\\MerchantAdmin.AI.API.Tests.csproj|solutionrelative:merchantadmin.ai.api.tests\\swaggerfixture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|f:\\visual studio projectcode\\csharp\\web\\merchantadmin\\ai\\backend\\merchantadmin.ai.api\\ai\\tools\\pendingsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B59A881F-C67A-1B48-C92C-B7D88668B2B1}|MerchantAdmin.AI.API\\MerchantAdmin.AI.API.csproj|solutionrelative:merchantadmin.ai.api\\ai\\tools\\pendingsummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d84ee353-0bef-5a41-a649-8f89aca5d84d}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ChatController.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Controllers\\ChatController.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Controllers\\ChatController.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Controllers\\ChatController.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Controllers\\ChatController.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAMwEMAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:29:34.954Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ToolCatalog.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\ToolCatalog.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Ai\\Tools\\ToolCatalog.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\ToolCatalog.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Ai\\Tools\\ToolCatalog.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAswCIAAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:48:54.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ToolFunctionFactory.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\ToolFunctionFactory.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Ai\\Tools\\ToolFunctionFactory.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\ToolFunctionFactory.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Ai\\Tools\\ToolFunctionFactory.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:49:10.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.Development.json",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\appsettings.Development.json",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\appsettings.Development.json",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\appsettings.Development.json",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\appsettings.Development.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-10T20:14:52.285Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\appsettings.json",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\appsettings.json",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\appsettings.json",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-10T20:15:17.96Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Program.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Program.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Program.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Program.cs",
+              "ViewState": "AgIAAFsAAAAAAAAAAAD4v5kAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:08:46.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": ".swagger-cache.json",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\.swagger-cache.json",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\.swagger-cache.json",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\.swagger-cache.json",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\.swagger-cache.json",
+              "ViewState": "AgIAANUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-10T20:17:20.085Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "tools.json",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\tools.json",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\tools.json",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\tools.json",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\tools.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-10T20:40:54.784Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SessionsController.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Controllers\\SessionsController.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Controllers\\SessionsController.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Controllers\\SessionsController.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Controllers\\SessionsController.cs",
+              "ViewState": "AgIAAPIAAAAAAAAAAAAAALABAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:27:52.395Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "StoreMcpServer.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Mcp\\StoreMcpServer.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Mcp\\StoreMcpServer.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Mcp\\StoreMcpServer.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Mcp\\StoreMcpServer.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAywAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:40:43.537Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "HttpToolInvoker.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\HttpToolInvoker.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Ai\\Tools\\HttpToolInvoker.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\HttpToolInvoker.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Ai\\Tools\\HttpToolInvoker.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:47:28.339Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "StoreAgent.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\StoreAgent.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\StoreAgent.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\StoreAgent.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\StoreAgent.cs",
+              "ViewState": "AgIAAMoAAAAAAAAAAAApwK4AAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:20:00.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "JsonSchemaLite.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\JsonSchemaLite.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Ai\\Tools\\JsonSchemaLite.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\JsonSchemaLite.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Ai\\Tools\\JsonSchemaLite.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:47:52.403Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ToolsController.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Controllers\\ToolsController.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Controllers\\ToolsController.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Controllers\\ToolsController.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Controllers\\ToolsController.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACAAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:47:14.798Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CurrentUser.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Auth\\CurrentUser.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Auth\\CurrentUser.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Auth\\CurrentUser.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Auth\\CurrentUser.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:26:47.728Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "ToolDescriptor.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\ToolDescriptor.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Ai\\Tools\\ToolDescriptor.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\ToolDescriptor.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Ai\\Tools\\ToolDescriptor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:48:59.62Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "VisibilityStore.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\VisibilityStore.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\VisibilityStore.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\VisibilityStore.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\VisibilityStore.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:26:34.773Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ToolCatalogReloader.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\ToolCatalogReloader.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\ToolCatalogReloader.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\ToolCatalogReloader.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\ToolCatalogReloader.cs",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:26:28.03Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "StoreGuardFilter.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\StoreGuardFilter.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\StoreGuardFilter.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\StoreGuardFilter.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\StoreGuardFilter.cs",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:25:46.646Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "SessionTitleService.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\SessionTitleService.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\SessionTitleService.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\SessionTitleService.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\SessionTitleService.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAjwEgAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:21:47.715Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "SessionPrefs.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\SessionPrefs.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\SessionPrefs.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\SessionPrefs.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\SessionPrefs.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:21:45.617Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "AgentLoopGuardTests.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\AgentLoopGuardTests.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API.Tests\\AgentLoopGuardTests.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\AgentLoopGuardTests.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API.Tests\\AgentLoopGuardTests.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAADgvxYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:49:35.079Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "HotReloadTests.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\HotReloadTests.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API.Tests\\HotReloadTests.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\HotReloadTests.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API.Tests\\HotReloadTests.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAEwBcAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:49:54.393Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "RedisPendingActionStore.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\RedisPendingActionStore.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\RedisPendingActionStore.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\RedisPendingActionStore.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\RedisPendingActionStore.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:21:44.635Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "RedisConversationStore.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\RedisConversationStore.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\RedisConversationStore.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\RedisConversationStore.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\RedisConversationStore.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAwwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:21:40.774Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "PendingActionStore.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\PendingActionStore.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\PendingActionStore.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\PendingActionStore.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\PendingActionStore.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:21:37.585Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "HumanApprovalService.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\HumanApprovalService.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\HumanApprovalService.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\HumanApprovalService.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\HumanApprovalService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:21:36.457Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "ConversationStore.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\ConversationStore.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\ConversationStore.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\ConversationStore.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\ConversationStore.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:21:17.421Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ChatHistorySerializer.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\ChatHistorySerializer.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\ChatHistorySerializer.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\ChatHistorySerializer.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\ChatHistorySerializer.cs",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:20:49.157Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ChatHistoryCompactor.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\ChatHistoryCompactor.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\ChatHistoryCompactor.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\ChatHistoryCompactor.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\ChatHistoryCompactor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:20:08.115Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "AiPermissionMode.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\AiPermissionMode.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\AiPermissionMode.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\AiPermissionMode.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\AiPermissionMode.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:19:34.486Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "AgentTraceService.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\AgentTraceService.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\AgentTraceService.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\AgentTraceService.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\AgentTraceService.cs",
+              "ViewState": "AgIAALUBAAAAAAAAAAAAAKYAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:18:09.366Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "AgentLoopGuard.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\AgentLoopGuard.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\AgentLoopGuard.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\AgentLoopGuard.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\AgentLoopGuard.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:17:44.541Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "AgentContinuation.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\AgentContinuation.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Harness\\AgentContinuation.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Harness\\AgentContinuation.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Harness\\AgentContinuation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T20:17:32.826Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "RedisPersistenceTests.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\RedisPersistenceTests.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API.Tests\\RedisPersistenceTests.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\RedisPersistenceTests.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API.Tests\\RedisPersistenceTests.cs",
+              "ViewState": "AgIAAKsAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:49:57.787Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "FakeMerchantApi.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\FakeMerchantApi.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API.Tests\\FakeMerchantApi.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\FakeMerchantApi.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API.Tests\\FakeMerchantApi.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAA4wCoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:49:39.152Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "ApprovalFlowTests.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\ApprovalFlowTests.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API.Tests\\ApprovalFlowTests.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\ApprovalFlowTests.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API.Tests\\ApprovalFlowTests.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:49:36.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "OpenApiToolSource.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\OpenApiToolSource.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Ai\\Tools\\OpenApiToolSource.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\OpenApiToolSource.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Ai\\Tools\\OpenApiToolSource.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAIMAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:48:04.931Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "ChatHistorySerializerTests.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\ChatHistorySerializerTests.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API.Tests\\ChatHistorySerializerTests.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\ChatHistorySerializerTests.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API.Tests\\ChatHistorySerializerTests.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:49:40.645Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "SwaggerFixture.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\SwaggerFixture.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API.Tests\\SwaggerFixture.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API.Tests\\SwaggerFixture.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API.Tests\\SwaggerFixture.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:49:20.269Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "PendingSummary.cs",
+              "DocumentMoniker": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\PendingSummary.cs",
+              "RelativeDocumentMoniker": "MerchantAdmin.AI.API\\Ai\\Tools\\PendingSummary.cs",
+              "ToolTip": "F:\\Visual Studio ProjectCode\\CSharp\\Web\\MerchantAdmin\\AI\\backend\\MerchantAdmin.AI.API\\Ai\\Tools\\PendingSummary.cs",
+              "RelativeToolTip": "MerchantAdmin.AI.API\\Ai\\Tools\\PendingSummary.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-10T14:48:48.094Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
