@@ -698,6 +698,19 @@ body {
   margin-bottom: 6px;
 }
 
+/* 默认账号提示：输入框已经预填，这里再写出来，让人知道这就是默认值 */
+.login-hint {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: -2px;
+}
+
+.login-hint b {
+  color: var(--text);
+  font-weight: 600;
+}
+
 .login-btn {
   width: 100%;
   margin-top: 4px;

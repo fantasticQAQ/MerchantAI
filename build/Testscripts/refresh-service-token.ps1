@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     用服务账号登录云上 Identity，把拿到的 JWT 写进 appsettings.Development.json 的 MerchantApi:ServiceToken。
 

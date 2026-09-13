@@ -12,7 +12,7 @@ namespace MerchantAdmin.AI.API.Controllers;
 [Authorize]
 public class ChatController : ControllerBase
 {
-    public const string IdentityClientName = "identity";
+    public const string IdentityClientName = ServiceTokenHttpClients.Identity;
 
     private readonly StoreAgent _agent;
     private readonly IPendingActionStore _pendingStore;

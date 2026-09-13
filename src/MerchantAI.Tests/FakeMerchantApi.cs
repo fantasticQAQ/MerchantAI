@@ -35,6 +35,9 @@ public sealed class FakeMerchantApi : IDisposable
     public string? LastOrderBody { get; private set; }
     public int OrderPostCount { get; private set; }
 
+    /// <summary>最后一次请求带上的 Authorization 头，用来断言 token 有没有挂上去。</summary>
+    public string? LastAuthorization { get; private set; }
+
     /// <summary>业务接口返回 success=false 时用，用来验证错误映射。</summary>
     public bool ReturnBusinessFailure { get; set; }
 
@@ -50,6 +53,7 @@ public sealed class FakeMerchantApi : IDisposable
 
             LastUrl = ctx.Request.Url?.PathAndQuery;
             LastMethod = ctx.Request.HttpMethod;
+            LastAuthorization = ctx.Request.Headers["Authorization"];
 
             string? body = null;
             if (ctx.Request.HasEntityBody)

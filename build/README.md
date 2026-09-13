@@ -50,8 +50,9 @@ SERVICE_PASSWORD=...       # 服务账号密码，用来换 token
 ```
 
 它会用服务账号登录云上 Identity，把拿到的 JWT 写进 `.env`，然后重启后端。
-**这枚 token 有有效期（实测 2 天）**，过期后 AI 查不到数据、工具全部报错 ——
-重跑一次这条命令就行，不用改代码。
+
+> 正常情况下**不需要跑这条命令**：后端已经会用服务账号在 token 临近过期或收到 401 时
+> 自动换新（见 README「token 与自动续期」）。这条命令留给「首次部署」和「应急手工换一枚」。
 
 ### 3. 起服务
 
@@ -131,15 +132,11 @@ ai-api  →  http://<网关>/api/merchant/Products
 云上生产环境关掉了 swagger，`tools.json` 里用 `from` 声明的工具解析不出参数骨架，
 **服务会直接启动失败**。所以镜像里带了 `src/MerchantAI.API/.swagger-cache.json`。
 
-注意这个文件在 `.gitignore` 里（当初把它当成了运行时产物）。如果你换成「在服务器上
-`git clone` 再构建」的部署方式，它不会跟着源码过去，构建出来的镜像启动会失败 ——
-那时把它一起拷过去，或者从 `.gitignore` 里去掉这条：
+注意这个文件**刻意没有**放进 `.gitignore`（根目录那份 .gitignore 里专门写了注释说明）。
+它必须跟着源码走：换成「在服务器上 `git clone` 再构建」的部署方式时，
+少了它构建出的镜像启动会失败。
 
-```
-src/MerchantAI.API/**/.swagger-cache.json
-```
-
-用 `.\deploy.ps1 save` 导出镜像的方式部署则没有这个问题，文件已经烤进镜像了。
+用 `.\deploy.ps1 save` 导出镜像的方式部署也没问题，文件已经烤进镜像了。
 
 ---
 
@@ -150,7 +147,12 @@ src/MerchantAI.API/**/.swagger-cache.json
 实测云上签的是容器内地址 `http://localhost:5001`，不是公网地址。
 
 **AI 说查不到数据 / 工具全报错**
-大概率是 ServiceToken 过期了：`.\deploy.ps1 token`。
+先看 `ai-api` 启动日志里有没有「业务接口 token 已开启自动续期」：
+
+- 有 —— 续期已生效，那大概率是服务账号被停用/改密，或 `.env` 里的 `IDENTITY_BASE_URL` 不对。
+  看日志里有没有「服务账号登录失败」。
+- 没有 —— 说明 `.env` 里的 `SERVICE_USER` / `SERVICE_PASSWORD` 没填全，
+  用 `.\deploy.ps1 token` 手工换一枚顶一下，并把服务账号补齐。
 
 **前端打得开但接口 502**
 `ai-api` 没起来或者还在启动中：`.\deploy.ps1 ps`、`.\deploy.ps1 logs ai-api`。

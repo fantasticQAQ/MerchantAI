@@ -663,9 +663,19 @@ cd src/MerchantAI.Frontend; npm run dev                       # http://localhost
 `appsettings.Development.json` 里需要维护两个值：
 
 - `DeepSeek:ApiKey`
-- `MerchantApi:ServiceToken` —— 给 AI 后端调业务接口用的 JWT。**它有有效期**（实测 2 天），
-  过期后表现为「查询失败 / 工具全部报错」，不是代码 bug。重跑 `build\Testscripts\refresh-service-token.ps1`
-  换一枚，然后重启后端。
+- `MerchantApi:ServiceToken` —— 给 AI 后端调业务接口用的 JWT。
+
+`ServiceToken` **不用手工维护**：后端会在它临近过期（剩余不足 5 分钟）或服务端返回 401 时，
+用 `MerchantApi:ServiceAccount` 自动登录 Identity 换一枚新的，并挂到后续请求上。
+只要配好 `ServiceAccount:UserName/Password` 和 `IdentityApi:BaseUrl` 就不会再出现「AI 突然查不到数据」。
+
+启动日志里会明确写出当前状态，配置漏了会直接告警：
+
+```
+业务接口 token 已开启自动续期（服务账号 fantastic）
+```
+
+没开自动续期时，`build\Testscripts\refresh-service-token.ps1` 仍可手工换一枚（换完要重启后端）。
 
 注意云上那台 Nginx 会**替换**前缀（`/api/merchant/Products` → `/api/Products`），
 所以 `MerchantApi:GatewayPrefix` 必须填 `/api/merchant`，否则请求会打到网关根路径、

@@ -1,4 +1,4 @@
-# 一键启动商户 AI 助手（后端 + 前端）
+﻿# 一键启动商户 AI 助手（后端 + 前端）
 # 用法：在 PowerShell 中运行  .\start.ps1
 $root = $PSScriptRoot
 

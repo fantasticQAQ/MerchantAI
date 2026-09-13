@@ -56,16 +56,19 @@ services.AddSingleton(catalog);
 services.AddSingleton<IToolCatalog>(sp => sp.GetRequiredService<ToolCatalog>());
 
 // ===== 业务 API（HTTP，只依赖接口契约，不引用任何业务 DLL） =====
-// token 从配置读，过期了重跑一次 AI/scripts/refresh-service-token.ps1 换一个即可。
-var serviceToken = builder.Configuration["MerchantApi:ServiceToken"] ?? "";
+// token 不再是一枚写死在配置里的字符串：ServiceTokenProvider 会在将过期时
+// 用服务账号自动换新的，并把新 token 通过 Handler 挂到每个请求上。
+services.Configure<MerchantApiOptions>(builder.Configuration.GetSection(MerchantApiOptions.SectionName));
+services.Configure<IdentityApiOptions>(builder.Configuration.GetSection(IdentityApiOptions.SectionName));
+services.AddSingleton<IServiceTokenProvider, ServiceTokenProvider>();
+
+services.AddTransient<ServiceTokenHandler>();
 services.AddHttpClient(HttpToolInvoker.HttpClientName, client =>
 {
     // 每次创建 client 时重新读，这样 tools.json 热加载改了 baseUrl 也能生效
     client.BaseAddress = new Uri(catalog.BaseUrl);
     client.Timeout = Timeout.InfiniteTimeSpan; // 超时由 HttpToolInvoker 按 tools.json 控制
-    if (!string.IsNullOrWhiteSpace(serviceToken))
-        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", serviceToken);
-});
+}).AddHttpMessageHandler<ServiceTokenHandler>();
 
 // ===== 会话历史 / 待确认操作：配了 Redis 且连得上就用 Redis，否则退回内存 =====
 // 降级是刻意的：本地没起 Redis 时不该连服务都跑不起来，但启动日志必须说清楚当前用的哪种。
@@ -109,7 +112,7 @@ services.AddSingleton<ICurrentUser, HttpContextCurrentUser>();
 //   http://host/api/identity/ + auth/login  ->  /api/identity/auth/login（网关）
 //   http://localhost:5001/api/ + auth/login ->  /api/auth/login（本地直连）
 var identityBaseUrl = builder.Configuration["IdentityApi:BaseUrl"] ?? "http://localhost:5001/api/";
-services.AddHttpClient(ChatController.IdentityClientName, client =>
+services.AddHttpClient(ServiceTokenHttpClients.Identity, client =>
 {
     client.BaseAddress = new Uri(identityBaseUrl.TrimEnd('/') + "/");
     client.Timeout = TimeSpan.FromSeconds(15);
@@ -196,6 +199,21 @@ if (app.Configuration.GetValue("Ai:Mcp:Enabled", true))
 
 // 启动时把工具清单打出来，配置错了第一时间能看见
 app.Logger.LogInformation("工具目录：{Path}，已注册 {Count} 个工具", catalog.SourcePath, catalog.Exposed.Count);
+
+// 业务接口的 token 是这套系统最容易「静默失效」的地方：过期后表现是 AI 突然查不到数据。
+// 所以启动时明确说清楚当前有没有自动续期，而不是等用户撞上 401 才排查。
+var tokenProvider = app.Services.GetRequiredService<IServiceTokenProvider>();
+if (tokenProvider.AutoRenewEnabled)
+{
+    app.Logger.LogInformation(
+        "业务接口 token 已开启自动续期（服务账号 {User}）", tokenProvider.ServiceAccountName);
+}
+else
+{
+    app.Logger.LogWarning(
+        "业务接口 token 未开启自动续期，过期后所有工具调用会集体返回 401。" +
+        "请配置 MerchantApi:ServiceAccount 的 UserName/Password 与 IdentityApi:BaseUrl");
+}
 
 if (catalog.UnexposedOperations.Count > 0)
 {

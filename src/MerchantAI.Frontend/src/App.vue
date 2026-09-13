@@ -15,7 +15,13 @@ const COLLAPSE_KEY = 'merchant-ai:collapsed'
 
 const token = ref(localStorage.getItem(TOKEN_KEY) || '')
 const currentUser = ref(null)
-const loginForm = reactive({ userName: '', password: '' })
+
+// 默认账号：预填输入框，并在登录页显式写出来，省去每次手输。
+// 要和后端 appsettings 里的服务账号（或任意商户后台账号）保持一致，
+// 后端改了账号这里也要跟着改。
+const DEFAULT_ACCOUNT = { userName: 'fantastic', password: '123456' }
+
+const loginForm = reactive({ ...DEFAULT_ACCOUNT })
 const loginError = ref('')
 const loginLoading = ref(false)
 const booting = ref(true)
@@ -396,6 +402,10 @@ function logout(message) {
   sessions.value = []
   traceEntries.value = []
   view.value = 'chat'
+  // 回到登录页时恢复默认账号：登录成功后密码框会被清空，
+  // 退出/过期后就只剩用户名，还得再手输一遍密码。
+  loginForm.userName = DEFAULT_ACCOUNT.userName
+  loginForm.password = DEFAULT_ACCOUNT.password
   if (message) loginError.value = message
 }
 
@@ -1169,6 +1179,10 @@ onMounted(async () => {
           autocomplete="current-password"
           @keydown.enter="doLogin"
         />
+
+        <div class="login-hint">
+          默认账号：<b>{{ DEFAULT_ACCOUNT.userName }}</b> / <b>{{ DEFAULT_ACCOUNT.password }}</b>
+        </div>
 
         <el-alert v-if="loginError" :title="loginError" type="error" :closable="false" show-icon />
 

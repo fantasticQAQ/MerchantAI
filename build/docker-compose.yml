@@ -39,6 +39,10 @@ services:
       - MerchantApi__BaseUrl=${MERCHANT_BASE_URL}
       - MerchantApi__GatewayPrefix=${MERCHANT_GATEWAY_PREFIX}
       - MerchantApi__ServiceToken=${MERCHANT_SERVICE_TOKEN}
+      # 服务账号：后端用它自动续期业务 token。缺了这两个，
+      # token 过期后所有工具调用会集体 401（启动日志会告警）。
+      - MerchantApi__ServiceAccount__UserName=${SERVICE_USER}
+      - MerchantApi__ServiceAccount__Password=${SERVICE_PASSWORD}
 
       # ---- JWT 校验（必须和云上 Identity 实际签出来的 iss 一致）----
       - Jwt__Issuer=${JWT_ISSUER}
