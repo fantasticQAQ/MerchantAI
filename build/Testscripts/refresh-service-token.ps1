@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
     用服务账号登录云上 Identity，把拿到的 JWT 写进 appsettings.Development.json 的 MerchantApi:ServiceToken。
 
@@ -16,7 +16,7 @@ param(
     [string]$Base = 'http://1.14.205.214:8080',
     [string]$UserName = 'fantastic',
     [string]$Password = '123456',
-    [string]$Settings = "$PSScriptRoot\..\backend\MerchantAdmin.AI.API\appsettings.Development.json"
+    [string]$Settings = "$PSScriptRoot\..\..\src\MerchantAI.API\appsettings.Development.json"
 )
 
 $ErrorActionPreference = 'Stop'

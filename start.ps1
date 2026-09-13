@@ -1,9 +1,9 @@
-﻿# 一键启动商户 AI 助手（后端 + 前端）
+# 一键启动商户 AI 助手（后端 + 前端）
 # 用法：在 PowerShell 中运行  .\start.ps1
 $root = $PSScriptRoot
 
-$backend = Join-Path $root "backend\MerchantAdmin.AI.API"
-$frontend = Join-Path $root "frontend"
+$backend = Join-Path $root "src\MerchantAI.API"
+$frontend = Join-Path $root "src\MerchantAI.Frontend"
 
 Write-Host ""
 Write-Host "== 商户 AI 助手 启动脚本 ==" -ForegroundColor Cyan
@@ -16,7 +16,7 @@ if (-not (Test-Path (Join-Path $frontend "node_modules"))) {
     Set-Location $root
 }
 
-# 1. 启动后端（独立窗口；工作目录指向 backend，dotnet run 自动读取 launchSettings 端口 5100）
+# 1. 启动后端（独立窗口；工作目录指向 src\MerchantAI.API，dotnet run 自动读取 launchSettings 端口 5100）
 Write-Host "[1/2] 启动后端 http://localhost:5100  (Swagger: /swagger)" -ForegroundColor Green
 Start-Process -FilePath "dotnet" -ArgumentList "run" -WorkingDirectory $backend
 
@@ -26,7 +26,7 @@ Start-Process -FilePath "cmd.exe" -ArgumentList "/c npm run dev" -WorkingDirecto
 
 Write-Host ""
 Write-Host "启动完成，请打开 http://localhost:5174 使用。" -ForegroundColor Cyan
-Write-Host "提示：首次使用前请先在 backend\MerchantAdmin.AI.API\appsettings.json"
+Write-Host "提示：首次使用前请先在 src\MerchantAI.API\appsettings.json"
 Write-Host "      填写 DeepSeek.ApiKey 和 MerchantApi.ServiceToken，否则无法对话。" -ForegroundColor Yellow
 Write-Host "停止：分别关闭后端、前端两个命令行窗口即可。" -ForegroundColor DarkGray
 Write-Host ""

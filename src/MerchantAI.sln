@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.37012.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchantAI.API", "MerchantAI.API\MerchantAI.API.csproj", "{7BBF6E28-2EEA-536B-9FC3-9968DD2D6DC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MerchantAI.Tests", "MerchantAI.Tests\MerchantAI.Tests.csproj", "{FA946735-A10E-1951-3672-3A404035C83E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7BBF6E28-2EEA-536B-9FC3-9968DD2D6DC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BBF6E28-2EEA-536B-9FC3-9968DD2D6DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BBF6E28-2EEA-536B-9FC3-9968DD2D6DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BBF6E28-2EEA-536B-9FC3-9968DD2D6DC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA946735-A10E-1951-3672-3A404035C83E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA946735-A10E-1951-3672-3A404035C83E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA946735-A10E-1951-3672-3A404035C83E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA946735-A10E-1951-3672-3A404035C83E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {109B7308-DB9B-4699-A3BB-7C3CFC5D1DA2}
+	EndGlobalSection
+EndGlobal

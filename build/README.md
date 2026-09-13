@@ -129,14 +129,14 @@ ai-api  →  http://<网关>/api/merchant/Products
 ### 关于 swagger 缓存
 
 云上生产环境关掉了 swagger，`tools.json` 里用 `from` 声明的工具解析不出参数骨架，
-**服务会直接启动失败**。所以镜像里带了 `AI/backend/MerchantAdmin.AI.API/.swagger-cache.json`。
+**服务会直接启动失败**。所以镜像里带了 `src/MerchantAI.API/.swagger-cache.json`。
 
 注意这个文件在 `.gitignore` 里（当初把它当成了运行时产物）。如果你换成「在服务器上
 `git clone` 再构建」的部署方式，它不会跟着源码过去，构建出来的镜像启动会失败 ——
 那时把它一起拷过去，或者从 `.gitignore` 里去掉这条：
 
 ```
-AI/backend/**/.swagger-cache.json
+src/MerchantAI.API/**/.swagger-cache.json
 ```
 
 用 `.\deploy.ps1 save` 导出镜像的方式部署则没有这个问题，文件已经烤进镜像了。

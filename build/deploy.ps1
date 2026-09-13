@@ -1,11 +1,11 @@
-﻿<#
+<#
 .SYNOPSIS
     AI 助手的部署脚本：构建、启动、看日志、刷新 token。
 
 .DESCRIPTION
     对 docker compose 的薄封装，但替你处理了三件容易踩的事：
 
-      1. 相对路径 —— compose 文件里 build context 是 ../backend、../frontend，
+      1. 相对路径 —— compose 文件里 build context 是 ../src、../src/MerchantAI.Frontend，
          脚本每次都会先切到自己的目录，从哪调用都行。
       2. .env —— 所有密钥和地址都在 .env 里，脚本会先检查它在不在，
          缺了就提示跑 init，而不是让 compose 用一堆空值把容器起起来。

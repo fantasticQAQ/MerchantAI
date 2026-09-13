@@ -1,4 +1,4 @@
-# 构建上下文是 AI/backend（同时含 API 和 Tests 两个项目），但镜像里只要 API。
+# 构建上下文是 src（同时含 API 和 Tests 两个项目），但镜像里只要 API。
 # 不排掉这些的话，宿主机编译出来的 obj/bin 会被拷进去，dotnet publish 可能直接报错。
 
 **/bin
@@ -6,7 +6,7 @@
 **/TestResults
 
 # 测试工程不打进镜像
-MerchantAdmin.AI.API.Tests
+MerchantAI.Tests
 
 .vs
 .git

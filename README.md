@@ -5,7 +5,7 @@
 ```
 AI 前端 Vue3 (:5174，聊天 + 待确认卡片)
         ↓  HTTP
-AI 后端 MerchantAdmin.AI.API (:5100，Swagger + MCP)
+AI 后端 MerchantAI.API (:5100，Swagger + MCP)
    ├── Controllers/ChatController   POST /api/ai/chat、/confirm、/cancel
    ├── Harness/
    │     ├── StoreAgent              ChatCompletionAgent + 系统提示词 + 会话历史
@@ -632,7 +632,7 @@ MCP 不带 token                → 401
 ## 九、测试
 
 ```powershell
-cd AI/backend
+cd src
 dotnet test                # 116 个用例
 ```
 
@@ -652,9 +652,9 @@ Redis 相关用例用 `[SkippableFact]` 标记：**本机没起 Redis 就自动�
 `appsettings.Development.json` 里的地址已经指向云网关，登录、查数据都走真实的线上服务。
 
 ```powershell
-# AI（也可以直接跑 AI\start.ps1）
-dotnet run --project AI/backend/MerchantAdmin.AI.API        # http://localhost:5100/swagger
-cd AI/frontend; npm run dev                                  # http://localhost:5174
+# AI（也可以直接跑根目录的 start.ps1）
+dotnet run --project src/MerchantAI.API                       # http://localhost:5100/swagger
+cd src/MerchantAI.Frontend; npm run dev                       # http://localhost:5174
 ```
 
 本机还需要一个 Redis（会话历史、待确认操作、审计轨迹都存这儿）。本机装的原生 Redis 就够，
@@ -664,7 +664,7 @@ cd AI/frontend; npm run dev                                  # http://localhost:
 
 - `DeepSeek:ApiKey`
 - `MerchantApi:ServiceToken` —— 给 AI 后端调业务接口用的 JWT。**它有有效期**（实测 2 天），
-  过期后表现为「查询失败 / 工具全部报错」，不是代码 bug。重跑 `AI\scripts\refresh-service-token.ps1`
+  过期后表现为「查询失败 / 工具全部报错」，不是代码 bug。重跑 `build\Testscripts\refresh-service-token.ps1`
   换一枚，然后重启后端。
 
 注意云上那台 Nginx 会**替换**前缀（`/api/merchant/Products` → `/api/Products`），
