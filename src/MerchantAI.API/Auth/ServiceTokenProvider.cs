@@ -39,9 +39,10 @@ public sealed class ServiceAccountOptions
 /// 业务接口用的 access token 来源。
 ///
 /// 之前这里只是一个从配置读出来的静态字符串，token 一到期（实测云上只发 2 小时）
-/// 所有工具调用就集体 401，表现是「AI 突然查不到数据」，且没有任何显式提示 ——
-/// 只能靠人记得去重跑一次脚本。现在改成：请求前检查有效期，将过期就用服务账号换一枚新的。
-/// </summary>
+    /// 所有工具调用就集体 401，表现是「AI 突然查不到数据」，且没有任何显式提示 ——
+    /// 只能靠人记得去重跑一次脚本。现在改成：请求前检查有效期，将过期时优先用
+    /// refresh token 换新（后端轮换、一次性），refresh 失效再回退到服务账号密码登录。
+    /// </summary>
 public interface IServiceTokenProvider
 {
     /// <summary>是否具备自动续期条件（配了服务账号 + Identity 地址）。启动日志据此提示。</summary>
@@ -77,6 +78,7 @@ public sealed class ServiceTokenProvider : IServiceTokenProvider
     private readonly SemaphoreSlim _gate = new(1, 1);
 
     private string? _cachedToken;
+    private string? _cachedRefreshToken;
     private DateTimeOffset _expiresAt = DateTimeOffset.MinValue;
     private DateTimeOffset _lastFailureAt = DateTimeOffset.MinValue;
     private bool _loggedNoRenewal;
@@ -155,6 +157,68 @@ public sealed class ServiceTokenProvider : IServiceTokenProvider
 
     private async Task<string?> RenewAsync(CancellationToken ct)
     {
+        // 优先用 refresh token 换新：后端把它当一次性（轮换），每换一次就作废旧的一枚，
+        // 所以拿到新值后必须替换缓存。refresh 失效（作废/过期/改了密码）时回退到账号密码登录。
+        if (!string.IsNullOrEmpty(_cachedRefreshToken))
+        {
+            var refreshed = await TryRefreshAsync(ct);
+            if (!string.IsNullOrEmpty(refreshed)) return refreshed;
+
+            // 这枚 refresh token 已被服务端作废，清掉免得下轮又拿它打一遍。
+            _cachedRefreshToken = null;
+        }
+
+        return await LoginAsync(ct);
+    }
+
+    private async Task<string?> TryRefreshAsync(CancellationToken ct)
+    {
+        try
+        {
+            var client = _httpFactory.CreateClient(ServiceTokenHttpClients.Identity);
+
+            var payload = JsonSerializer.SerializeToUtf8Bytes(new
+            {
+                refreshToken = _cachedRefreshToken
+            });
+            using var content = new ByteArrayContent(payload);
+            content.Headers.ContentType =
+                new System.Net.Http.Headers.MediaTypeHeaderValue("application/json") { CharSet = "utf-8" };
+
+            using var response = await client.PostAsync("auth/refresh", content, ct);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                _lastFailureAt = DateTimeOffset.UtcNow;
+                _logger.LogWarning(
+                    "refresh token 换新失败（HTTP {Status}），回退到服务账号登录", (int)response.StatusCode);
+                return null;
+            }
+
+            var result = await response.Content.ReadFromJsonAsync<TokenPair>(cancellationToken: ct);
+            if (string.IsNullOrWhiteSpace(result?.Token) || string.IsNullOrWhiteSpace(result.RefreshToken))
+            {
+                _lastFailureAt = DateTimeOffset.UtcNow;
+                _logger.LogWarning("refresh token 换新成功但响应里没有新的 token 对，回退到服务账号登录");
+                return null;
+            }
+
+            var token = StoreTokens(result.Token, result.RefreshToken!);
+            _logger.LogInformation(
+                "已用 refresh token 续期，新 token 有效至 {Expiry:yyyy-MM-dd HH:mm:ss}",
+                _expiresAt.ToLocalTime());
+            return token;
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException)
+        {
+            _lastFailureAt = DateTimeOffset.UtcNow;
+            _logger.LogWarning(ex, "调用刷新接口出错，回退到服务账号登录");
+            return null;
+        }
+    }
+
+    private async Task<string?> LoginAsync(CancellationToken ct)
+    {
         var account = _options.ServiceAccount!;
         try
         {
@@ -181,20 +245,15 @@ public sealed class ServiceTokenProvider : IServiceTokenProvider
                 return null;
             }
 
-            var result = await response.Content.ReadFromJsonAsync<LoginResponse>(cancellationToken: ct);
-            if (string.IsNullOrWhiteSpace(result?.Token))
+            var result = await response.Content.ReadFromJsonAsync<TokenPair>(cancellationToken: ct);
+            if (string.IsNullOrWhiteSpace(result?.Token) || string.IsNullOrWhiteSpace(result.RefreshToken))
             {
                 _lastFailureAt = DateTimeOffset.UtcNow;
-                _logger.LogError("服务账号登录成功但响应里没有 token，业务接口将无法调用");
+                _logger.LogError("服务账号登录成功但响应里没有 token 对，业务接口将无法调用");
                 return null;
             }
 
-            var token = result.Token.Trim();
-            _cachedToken = token;
-            // 读不出 exp 也不能当永久有效：退而求其次按 30 分钟算，下次请求会再换
-            _expiresAt = ReadExpiry(token) ?? DateTimeOffset.UtcNow.AddMinutes(30);
-            _lastFailureAt = DateTimeOffset.MinValue;
-
+            var token = StoreTokens(result.Token, result.RefreshToken!);
             _logger.LogInformation(
                 "已为服务账号 {User} 换取新的业务接口 token，有效至 {Expiry:yyyy-MM-dd HH:mm:ss}",
                 account.UserName, _expiresAt.ToLocalTime());
@@ -206,6 +265,17 @@ public sealed class ServiceTokenProvider : IServiceTokenProvider
             _logger.LogError(ex, "换取业务接口 token 时出错，沿用上一枚");
             return null;
         }
+    }
+
+    /// <summary>把换来的新 token 对写入缓存，并重置失败冷却。</summary>
+    private string StoreTokens(string token, string refreshToken)
+    {
+        _cachedToken = token.Trim();
+        _cachedRefreshToken = refreshToken.Trim();
+        // 读不出 exp 也不能当永久有效：退而求其次按 30 分钟算，下次请求会再换
+        _expiresAt = ReadExpiry(_cachedToken) ?? DateTimeOffset.UtcNow.AddMinutes(30);
+        _lastFailureAt = DateTimeOffset.MinValue;
+        return _cachedToken;
     }
 
     private void WarnOnceNoRenewal()
@@ -253,7 +323,7 @@ public sealed class ServiceTokenProvider : IServiceTokenProvider
     private static string Trim(string s)
         => s.Length <= 300 ? s : s[..300] + "…";
 
-    private sealed record LoginResponse(string? Token);
+    private sealed record TokenPair(string? Token, string? RefreshToken);
 }
 
 /// <summary>续期用的具名 HttpClient（和登录代理共用同一个 Identity 客户端）。</summary>

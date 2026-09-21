@@ -29,8 +29,8 @@ services:
 
   ai-api:
     build:
-      context: ../src
-      dockerfile: MerchantAI.API/Dockerfile
+      context: .
+      dockerfile: src/MerchantAI.API/Dockerfile
     image: merchant-admin-ai-api:${IMAGE_TAG:-latest}
     container_name: ai-api
     environment:
@@ -71,7 +71,7 @@ services:
 
   ai-frontend:
     build:
-      context: ../src/MerchantAI.Frontend
+      context: ./src/MerchantAI.Frontend
     image: merchant-admin-ai-frontend:${IMAGE_TAG:-latest}
     container_name: ai-frontend
     # 唯一的对外入口：静态资源 + /api/ 与 /mcp 反代到 ai-api

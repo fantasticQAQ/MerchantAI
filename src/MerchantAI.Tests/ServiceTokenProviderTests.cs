@@ -100,14 +100,73 @@ public class ServiceTokenProviderTests
 
         var provider = Build(identity, staticToken: stale);
         var first = await provider.GetTokenAsync();
-        Assert.Equal(1, identity.LoginCount);
+        Assert.Equal(1, identity.LoginCount);   // 初始登录换到一枚 token + 一枚 refresh
 
         // 本地算出来还没到期，但服务端不认（改密码/停用/时钟偏差都会这样）
         provider.ReportUnauthorized(first);
 
+        // 有了 refresh token，续期就该走 refresh 而不是重新登录
         var second = await provider.GetTokenAsync();
-        Assert.Equal(2, identity.LoginCount);
+        Assert.Equal(1, identity.LoginCount);    // 没有再登录
+        Assert.Equal(1, identity.RefreshCount);  // 用 refresh 换的
         Assert.NotEqual(first, second);
+    }
+
+    [Fact]
+    public async Task 续期优先用refresh换新_而不是重新登录()
+    {
+        using var identity = new FakeIdentityApi { TokenLifetime = TimeSpan.FromMinutes(1) };
+        var stale = SampleToken(TimeSpan.FromMinutes(1));
+
+        var provider = Build(identity, staticToken: stale);
+        var first = await provider.GetTokenAsync();
+        Assert.Equal(1, identity.LoginCount);
+
+        // 签到的只有 1 分钟寿命，下次请求必然触发续期 -> 应走 refresh 而不是再登录
+        var second = await provider.GetTokenAsync();
+
+        Assert.Equal(1, identity.LoginCount);
+        Assert.Equal(1, identity.RefreshCount);
+        Assert.NotEqual(first, second);
+    }
+
+    [Fact]
+    public async Task refresh失效时回退到账号密码登录()
+    {
+        using var identity = new FakeIdentityApi { TokenLifetime = TimeSpan.FromMinutes(1) };
+        var stale = SampleToken(TimeSpan.FromMinutes(1));
+
+        var provider = Build(identity, staticToken: stale);
+        var first = await provider.GetTokenAsync();
+        Assert.Equal(1, identity.LoginCount);
+
+        // 让 refresh 失效（改密码 / 整链被作废）—— 续期必须能退回登录，而不是卡死
+        identity.RefreshStatusCode = HttpStatusCode.Unauthorized;
+
+        var second = await provider.GetTokenAsync();
+
+        Assert.Equal(2, identity.LoginCount);    // refresh 失败 -> 回退登录兜底
+        Assert.Equal(1, identity.RefreshCount);
+        Assert.NotEqual(first, second);
+    }
+
+    [Fact]
+    public async Task refresh轮换后旧的作废_用新的能一直续下去()
+    {
+        using var identity = new FakeIdentityApi { TokenLifetime = TimeSpan.FromMinutes(1) };
+        var stale = SampleToken(TimeSpan.FromMinutes(1));
+
+        var provider = Build(identity, staticToken: stale);
+
+        await provider.GetTokenAsync();          // 登录 -> RT1
+        var second = await provider.GetTokenAsync();   // RT1 -> RT2（轮换）
+        Assert.Equal(1, identity.LoginCount);
+        Assert.Equal(1, identity.RefreshCount);
+
+        var third = await provider.GetTokenAsync();    // 若沿用已作废的 RT1 会 401 退回登录
+        Assert.Equal(1, identity.LoginCount);          // 没回退登录，说明换缓存的是轮换后的 RT2
+        Assert.Equal(2, identity.RefreshCount);
+        Assert.NotEqual(second, third);
     }
 
     [Fact]
@@ -160,12 +219,13 @@ public class ServiceTokenProviderTests
             BaseAddress = new Uri("http://localhost")
         };
 
-        await invoker.GetAsync("/api/Products");   // stale 快过期 -> 换一次 -> 被 401 拒
+        await invoker.GetAsync("/api/Products");   // stale 快过期 -> 登录续到一枚 -> 被 401 拒
         Assert.Equal(1, identity.LoginCount);
 
-        await invoker.GetAsync("/api/Products");   // 已作废 -> 必须再换一次，而不是继续用被拒的那枚
+        await invoker.GetAsync("/api/Products");   // 已作废 -> 必须再续一次（这次走 refresh）
 
-        Assert.Equal(2, identity.LoginCount);
+        Assert.Equal(1, identity.LoginCount);    // 没有再登录
+        Assert.Equal(1, identity.RefreshCount);  // 用 refresh 换的
     }
 
     /// <summary>
@@ -297,11 +357,17 @@ public sealed class FakeIdentityApi : IDisposable
 
     public string BaseUrl { get; }
     public int LoginCount { get; private set; }
+    public int RefreshCount { get; private set; }
     public string IssuedToken { get; private set; } = string.Empty;
 
     public HttpStatusCode LoginStatusCode { get; set; } = HttpStatusCode.OK;
+    public HttpStatusCode RefreshStatusCode { get; set; } = HttpStatusCode.OK;
     public TimeSpan LoginDelay { get; set; } = TimeSpan.Zero;
     public TimeSpan TokenLifetime { get; set; } = TimeSpan.FromHours(2);
+
+    /// <summary>还活着（没被用过）的 refresh token。模拟后端一次性轮换：用过即作废。</summary>
+    private readonly HashSet<string> _activeRefreshTokens = new();
+    private readonly object _refreshGate = new();
 
     private async Task LoopAsync()
     {
@@ -315,33 +381,93 @@ public sealed class FakeIdentityApi : IDisposable
             {
                 try
                 {
-                    LoginCount++;
                     if (LoginDelay > TimeSpan.Zero) await Task.Delay(LoginDelay);
 
-                    if (LoginStatusCode != HttpStatusCode.OK)
-                    {
-                        ctx.Response.StatusCode = (int)LoginStatusCode;
-                        ctx.Response.Close();
-                        return;
-                    }
-
-                    IssuedToken = MakeToken(TokenLifetime);
-                    var json = JsonSerializer.SerializeToUtf8Bytes(new
-                    {
-                        token = IssuedToken,
-                        userName = "fantastic",
-                        roles = new[] { "Admin" }
-                    });
-
-                    ctx.Response.StatusCode = 200;
-                    ctx.Response.ContentType = "application/json; charset=utf-8";
-                    ctx.Response.ContentLength64 = json.Length;
-                    await ctx.Response.OutputStream.WriteAsync(json);
-                    ctx.Response.Close();
+                    var path = ctx.Request.Url!.AbsolutePath;
+                    if (path.EndsWith("auth/refresh", StringComparison.OrdinalIgnoreCase))
+                        await HandleRefreshAsync(ctx);
+                    else
+                        HandleLogin(ctx);
                 }
                 catch { /* 测试收尾时监听器被关掉，忽略 */ }
             });
         }
+    }
+
+    private void HandleLogin(HttpListenerContext ctx)
+    {
+        LoginCount++;
+        if (LoginStatusCode != HttpStatusCode.OK)
+        {
+            ctx.Response.StatusCode = (int)LoginStatusCode;
+            ctx.Response.Close();
+            return;
+        }
+
+        IssueAndWrite(ctx.Response, out _);
+    }
+
+    private async Task HandleRefreshAsync(HttpListenerContext ctx)
+    {
+        RefreshCount++;
+
+        var body = await new StreamReader(ctx.Request.InputStream).ReadToEndAsync();
+        string? used = null;
+        try
+        {
+            using var doc = JsonDocument.Parse(body);
+            if (doc.RootElement.TryGetProperty("refreshToken", out var p)) used = p.GetString();
+        }
+        catch { }
+
+        // 给的 refresh token 查无此牌 / 已用过（轮换） / 或测试要求 refresh 失败 -> 401
+        if (RefreshStatusCode != HttpStatusCode.OK
+            || used is null
+            || !ConsumeRefreshToken(used))
+        {
+            ctx.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+            ctx.Response.Close();
+            return;
+        }
+
+        IssueAndWrite(ctx.Response, out _);
+    }
+
+    private void IssueAndWrite(HttpListenerResponse response, out string refreshToken)
+    {
+        IssuedToken = MakeToken(TokenLifetime);
+        refreshToken = MakeRefreshToken();
+        var json = JsonSerializer.SerializeToUtf8Bytes(new
+        {
+            token = IssuedToken,
+            refreshToken,
+            userName = "fantastic",
+            roles = new[] { "Admin" }
+        });
+
+        response.StatusCode = 200;
+        response.ContentType = "application/json; charset=utf-8";
+        response.ContentLength64 = json.Length;
+        response.OutputStream.WriteAsync(json).GetAwaiter().GetResult();
+        response.Close();
+    }
+
+    private bool ConsumeRefreshToken(string token)
+    {
+        lock (_refreshGate)
+        {
+            return _activeRefreshTokens.Remove(token);   // 一次性：用过即作废
+        }
+    }
+
+    private string MakeRefreshToken()
+    {
+        var token = Guid.NewGuid().ToString("N");
+        lock (_refreshGate)
+        {
+            _activeRefreshTokens.Add(token);
+        }
+        return token;
     }
 
     private static string MakeToken(TimeSpan lifetime)
