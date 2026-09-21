@@ -13,13 +13,16 @@ services:
     image: redis:7-alpine
     container_name: ai-redis
     # appendonly：审计轨迹要求永久保留，不能只放在内存里
-    command: redis-server --appendonly yes
+    # requirepass：端口已对外暴露，必须有密码兜底
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "${REDIS_PASSWORD}"]
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD}
     ports:
-      - "127.0.0.1:6380:6379"    # ← 加这两行
+      - "6380:6379"
     volumes:
       - ai_redis_data:/data
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ["CMD-SHELL", "redis-cli -a \"$$REDIS_PASSWORD\" --no-auth-warning ping"]
       interval: 10s
       timeout: 5s
       retries: 10
